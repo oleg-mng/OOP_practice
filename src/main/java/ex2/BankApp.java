@@ -1,14 +1,17 @@
 package ex2;
 
 public class BankApp {
-    static Integer value;
+    int res;
 
-    public void setDeposit(Integer value) {
-        BankApp.value = value;
+    public void setDeposit(int value) {
+        new BankApp().res= value;
+        this.res= value;
+        System.out.println(res);
+
     }
 
     void foo() {
-        System.out.println("void foo: " + value.toString());
+        System.out.println("void foo: " + res);
     }
 
     public static void main(String[] args) {
