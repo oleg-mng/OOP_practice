@@ -9,9 +9,12 @@ public class App {
         Btn button = new Btn(foo);
 
         View v1 = new View(button);
-        v1.click();
 
         button.setAction(new NewAction());
+        v1.click();
+
+        button.setAction(new Hoo());
+        v1.click();
 
     }
 }
@@ -39,7 +42,8 @@ class Hoo extends ButtonAction {
 
 class View {
     private Btn btn;
-    public void click(){
+
+    public void click() {
         btn.click();
     }
 
@@ -54,7 +58,8 @@ class Btn {
     public Btn(ButtonAction action) {
         this.action = action;
     }
-    public void setAction(ButtonAction action){
+
+    public void setAction(ButtonAction action) {
         this.action = action;
     }
 
