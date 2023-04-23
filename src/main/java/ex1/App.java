@@ -9,6 +9,9 @@ public class App {
         Btn button = new Btn(foo);
 
         View v1 = new View(button);
+        v1.click();
+
+        button.setAction(new NewAction());
 
     }
 }
@@ -49,6 +52,9 @@ class Btn {
     ButtonAction action;
 
     public Btn(ButtonAction action) {
+        this.action = action;
+    }
+    public void setAction(ButtonAction action){
         this.action = action;
     }
 
