@@ -1,7 +1,7 @@
 package ex4;
 
 public interface Polygon extends Line {
-    void getArea(int length, int breadth);
+    void getArea();
     public default void getPerimeter(int... size){
         int perimeter = 0;
         for (int i : size) {
