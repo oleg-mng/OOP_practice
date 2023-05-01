@@ -66,5 +66,4 @@ class Btn {
     public void click() {
         action.method();
     }
-
 }
