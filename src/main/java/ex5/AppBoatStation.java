@@ -6,6 +6,11 @@ public class AppBoatStation {
         QuadrupleBoat q1 = new QuadrupleBoat();
         q1.getInfo();
 
+        Payment p1 = new Payment();
+        p1.setTypePayment("cash");
+        Payment p2 = new Payment();
+        p2.setTypePayment("card");
+
     }
 }
 
@@ -38,12 +43,40 @@ class QuadrupleBoat implements Boat {
 }
 
 class CashDesk {
-    public void getPay(int numB, int hour) {
-        System.out.println("Лодка номер " + numB + "оплачена на количество часов " + hour);
+    int money;
+    int numB;
+    Time t;
+
+    public CashDesk(int money, int numB) {
+        this.money = money;
+        this.numB = numB;
+    }
+
+
+    public void getPay(int numB, Time t) {
+        t = new Time();
+        System.out.println("Лодка номер " + numB + "оплачена на количество часов " + t.payTime(money));
 
     }
 }
 
+class Time {
+    int hour;
+    int s = 100;
+
+    public int payTime(int money) {
+        hour = money / s;
+        return hour;
+    }
+}
+
 class Payment {
+    String type;
+
+    void setTypePayment(String type){
+        this.type = type;
+    }
+}
+class Client{
 
 }
