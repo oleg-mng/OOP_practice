@@ -1,7 +1,8 @@
 package ex5;
 
-import java.text.Format;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AppBoatStation {
     public static void main(String[] args) {
@@ -9,11 +10,11 @@ public class AppBoatStation {
         Client client1 = new Client(1, 8, "female");
         Client client2 = new Client(2, 15, "male");
 
-        SingleBoat s1 = new SingleBoat(1, "blue");
+        SingleBoat s1 = new SingleBoat(1, "Single", 100, "blue");
         s1.getInfo();
         s1.getParameters();
 
-        QuadrupleBoat q1 = new QuadrupleBoat();
+        QuadrupleBoat q1 = new QuadrupleBoat(2, "Quadro", 150, "green");
         q1.getInfo();
 
         Payment p1 = new Payment();
@@ -35,10 +36,14 @@ public class AppBoatStation {
         c2.getPay();
         c2.getStatus();
 
+        Boat b1 = new Boat(1, "Single");
+
+        Serviceability sb1 = new Serviceability(b1, 0.7);
+        sb1.hashMapAdd();
     }
 }
 
-interface Boat {
+interface PatameterBoats {
     int q = 0;
     String boatMode = "";
 
@@ -47,46 +52,39 @@ interface Boat {
 
     }
 }
+class Boat implements PatameterBoats {
+    int numB;
+    String size;
 
-class SingleBoat implements Boat {
-    public int price;
-    public String color;
-
-    public SingleBoat(int price, String color) {
-        this.price = price;
-        this.color = color;
-    }
-
-    public void setPrice(int p1) {
-        price = p1;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getParameters() {
-        return String.format("price: %d color: %s", price, color);
-    }
-
-
-    public SingleBoat() {
-
+    public Boat(int numB, String size) {
+        this.numB = numB;
+        this.size = size;
     }
 }
 
-class DoubleBoat implements Boat {
+
+class DoubleBoat extends Boat {
     public int price;
     public String color;
 
-    public DoubleBoat(int price, String color) {
-        super();
+    public DoubleBoat(int numB, String size, int price, String color) {
+        super(numB, size);
         this.price = price;
         this.color = color;
     }
 }
 
-class QuadrupleBoat implements Boat {
+class QuadrupleBoat extends Boat {
+    public int price;
+    public String color;
+
+    public QuadrupleBoat(int numB, String size, int price, String color) {
+        super(numB, size);
+        this.price = price;
+        this.color = color;
+    }
+
+
     @Override
     public void getInfo() {
         System.out.println("У нас появилась 4-х местная лодка");
@@ -192,7 +190,25 @@ class Repair {
 }
 
 class Serviceability {
+    Boat boat;
     double servAbility;
+    HashMap<Boat, Double> hashMapBoat;
+
+    public Serviceability(Boat boat, double servAbility) {
+        this.boat = boat;
+        this.servAbility = servAbility;
+    }
+
+    public HashMap<Boat, Double> hashMapAdd(){
+        hashMapBoat = new HashMap<>();
+        hashMapBoat.put(boat, servAbility);
+        for (Map.Entry<Boat, Double> boatDoubleEntry : hashMapBoat.entrySet()) {
+//            System.out.println(boatDoubleEntry);
+            System.out.println(String.format("number: %d, color: %s, servAbility: %f", boat.numB, boat.size, servAbility));
+
+        }
+        return hashMapBoat;
+    }
 
 }
 class busyOfBoat{
