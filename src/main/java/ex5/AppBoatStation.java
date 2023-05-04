@@ -1,11 +1,12 @@
 package ex5;
 
 import java.text.Format;
+import java.util.Date;
 
 public class AppBoatStation {
     public static void main(String[] args) {
 
-        SingleBoat s1 =new SingleBoat(1, "blue");
+        SingleBoat s1 = new SingleBoat(1, "blue");
         s1.getInfo();
         s1.getParameters();
 
@@ -18,10 +19,14 @@ public class AppBoatStation {
         p2.setTypePayment("card");
 
         Repair r1 = new Repair();
-        r1.getDayRepair(1,3);
+        r1.getDayRepair(1, 3);
 
         Repair r2 = new Repair();
-        r2.getDayRepair(2,4);
+        r2.getDayRepair(2, 4);
+
+        CashDesk c1 = new CashDesk(300, 2);
+        c1.getPay();
+        c1.getStatus();
 
     }
 }
@@ -35,6 +40,7 @@ interface Boat {
 
     }
 }
+
 class SingleBoat implements Boat {
     public int price;
     public String color;
@@ -43,13 +49,16 @@ class SingleBoat implements Boat {
         this.price = price;
         this.color = color;
     }
-    public void setPrice(int p1){
+
+    public void setPrice(int p1) {
         price = p1;
     }
-    public int getPrice(){
+
+    public int getPrice() {
         return price;
     }
-    public String getParameters(){
+
+    public String getParameters() {
         return String.format("price: %d color: %s", price, color);
     }
 
@@ -87,8 +96,11 @@ class CashDesk {
         this.numB = numB;
     }
 
+    public void getStatus() {
+        System.out.println("Лодка: " + numB + " оплачено: " + money);
+    }
 
-    public void getPay(int numB, Time t) {
+    public void getPay() {
         t = new Time();
         System.out.println("Лодка номер " + numB + "оплачена на количество часов " + t.payTime(money));
 
@@ -108,11 +120,22 @@ class Time {
 class Payment {
     String type;
 
-    void setTypePayment(String type){
+    void setTypePayment(String type) {
         this.type = type;
     }
 }
-class Client{
+class db extends Client{
+    Date dateBorn;
+    int numberVisits;
+
+    public db(int age, String gender, Date dateBorn, int numberVisits) {
+        super(age, gender);
+        this.dateBorn = dateBorn;
+        this.numberVisits = numberVisits;
+    }
+}
+
+class Client {
     int age;
     String gender;
 
@@ -121,7 +144,8 @@ class Client{
         this.gender = gender;
     }
 }
-class Repair{
+
+class Repair {
     int numB;
     int day;
 
@@ -130,8 +154,8 @@ class Repair{
         this.day = day;
     }
 
-    public int getDayRepair(int numB, int day){
-        System.out.println("Лодка номер "+numB+" будет ремонтироваться "+day+" дней");
+    public int getDayRepair(int numB, int day) {
+        System.out.println("Лодка номер " + numB + " будет ремонтироваться " + day + " дней");
         return day;
     }
 }
