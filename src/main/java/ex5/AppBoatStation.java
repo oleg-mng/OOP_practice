@@ -6,6 +6,9 @@ import java.util.Date;
 public class AppBoatStation {
     public static void main(String[] args) {
 
+        Client client1 = new Client(1, 8, "female");
+        Client client2 = new Client(2, 15, "male");
+
         SingleBoat s1 = new SingleBoat(1, "blue");
         s1.getInfo();
         s1.getParameters();
@@ -24,9 +27,13 @@ public class AppBoatStation {
         Repair r2 = new Repair();
         r2.getDayRepair(2, 4);
 
-        CashDesk c1 = new CashDesk(300, 2);
+        CashDesk c1 = new CashDesk(300, 1);
         c1.getPay();
         c1.getStatus();
+
+        CashDesk c2 = new CashDesk(100, 2);
+        c2.getPay();
+        c2.getStatus();
 
     }
 }
@@ -102,7 +109,7 @@ class CashDesk {
 
     public void getPay() {
         t = new Time();
-        System.out.println("Лодка номер " + numB + "оплачена на количество часов " + t.payTime(money));
+        System.out.println("Лодка номер " + numB + " оплачена на количество часов " + t.payTime(money));
 
     }
 }
@@ -124,22 +131,26 @@ class Payment {
         this.type = type;
     }
 }
-class db extends Client{
+
+class db extends Client {
+    int id;
     Date dateBorn;
     int numberVisits;
 
-    public db(int age, String gender, Date dateBorn, int numberVisits) {
-        super(age, gender);
+    public db(int id, int age, String gender, Date dateBorn, int numberVisits) {
+        super(id, age, gender);
         this.dateBorn = dateBorn;
         this.numberVisits = numberVisits;
     }
 }
 
 class Client {
+    int id;
     int age;
     String gender;
 
-    public Client(int age, String gender) {
+    public Client(int id, int age, String gender) {
+        this.id = id;
         this.age = age;
         this.gender = gender;
     }
@@ -149,8 +160,28 @@ class Repair {
     int numB;
     int day;
 
-    public Repair() {
+    public Repair(int numB, int day) {
         this.numB = numB;
+        this.day = day;
+    }
+
+    public Repair() {
+
+    }
+
+    public int getNumB() {
+        return numB;
+    }
+
+    public void setNumB(int numB) {
+        this.numB = numB;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
         this.day = day;
     }
 
@@ -158,4 +189,12 @@ class Repair {
         System.out.println("Лодка номер " + numB + " будет ремонтироваться " + day + " дней");
         return day;
     }
+}
+
+class Serviceability {
+    double servAbility;
+
+}
+class busyOfBoat{
+
 }
