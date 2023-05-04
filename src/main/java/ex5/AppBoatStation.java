@@ -1,7 +1,13 @@
 package ex5;
 
+import java.text.Format;
+
 public class AppBoatStation {
     public static void main(String[] args) {
+
+        SingleBoat s1 =new SingleBoat(1, "blue");
+        s1.getInfo();
+        s1.getParameters();
 
         QuadrupleBoat q1 = new QuadrupleBoat();
         q1.getInfo();
@@ -10,6 +16,12 @@ public class AppBoatStation {
         p1.setTypePayment("cash");
         Payment p2 = new Payment();
         p2.setTypePayment("card");
+
+        Repair r1 = new Repair();
+        r1.getDayRepair(1,3);
+
+        Repair r2 = new Repair();
+        r2.getDayRepair(2,4);
 
     }
 }
@@ -20,6 +32,29 @@ interface Boat {
 
     default void getInfo() {
         System.out.println("Базовая модель лодки 1 местная");
+
+    }
+}
+class SingleBoat implements Boat {
+    public int price;
+    public String color;
+
+    public SingleBoat(int price, String color) {
+        this.price = price;
+        this.color = color;
+    }
+    public void setPrice(int p1){
+        price = p1;
+    }
+    public int getPrice(){
+        return price;
+    }
+    public String getParameters(){
+        return String.format("price: %d color: %s", price, color);
+    }
+
+
+    public SingleBoat() {
 
     }
 }
@@ -78,5 +113,25 @@ class Payment {
     }
 }
 class Client{
+    int age;
+    String gender;
 
+    public Client(int age, String gender) {
+        this.age = age;
+        this.gender = gender;
+    }
+}
+class Repair{
+    int numB;
+    int day;
+
+    public Repair() {
+        this.numB = numB;
+        this.day = day;
+    }
+
+    public int getDayRepair(int numB, int day){
+        System.out.println("Лодка номер "+numB+" будет ремонтироваться "+day+" дней");
+        return day;
+    }
 }
