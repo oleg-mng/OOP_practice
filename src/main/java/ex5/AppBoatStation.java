@@ -43,51 +43,22 @@ public class AppBoatStation {
     }
 }
 
-interface PatameterBoats {
+interface ParameterBoats {
     int q = 0;
     String boatMode = "";
 
     default void getInfo() {
-        System.out.println("Базовая модель лодки 1 местная");
+        System.out.println("Данная модель лодки - базовая, количество мест = "+q);
 
     }
 }
-class Boat implements PatameterBoats {
+class Boat implements ParameterBoats {
     int numB;
     String size;
 
     public Boat(int numB, String size) {
         this.numB = numB;
         this.size = size;
-    }
-}
-
-
-class DoubleBoat extends Boat {
-    public int price;
-    public String color;
-
-    public DoubleBoat(int numB, String size, int price, String color) {
-        super(numB, size);
-        this.price = price;
-        this.color = color;
-    }
-}
-
-class QuadrupleBoat extends Boat {
-    public int price;
-    public String color;
-
-    public QuadrupleBoat(int numB, String size, int price, String color) {
-        super(numB, size);
-        this.price = price;
-        this.color = color;
-    }
-
-
-    @Override
-    public void getInfo() {
-        System.out.println("У нас появилась 4-х местная лодка");
     }
 }
 
@@ -109,16 +80,6 @@ class CashDesk {
         t = new Time();
         System.out.println("Лодка номер " + numB + " оплачена на количество часов " + t.payTime(money));
 
-    }
-}
-
-class Time {
-    int hour;
-    int s = 100;
-
-    public int payTime(int money) {
-        hour = money / s;
-        return hour;
     }
 }
 
