@@ -4,6 +4,8 @@ class SingleBoat extends Boat {
     public int price;
     public String color;
 
+    int q = 1;
+
     public SingleBoat(int numB, String size, int price, String color) {
         super(numB, size);
         this.price = price;
@@ -22,5 +24,8 @@ class SingleBoat extends Boat {
         return String.format("price: %d color: %s", price, color);
     }
 
-
+    @Override
+    public void getInfo() {
+        System.out.println("Данная модель лодки - базовая, количество мест = " + q);
+    }
 }

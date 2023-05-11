@@ -44,11 +44,9 @@ public class AppBoatStation {
 }
 
 interface ParameterBoats {
-    int q = 0;
-    String boatMode = "";
 
     default void getInfo() {
-        System.out.println("Данная модель лодки - базовая, количество мест = "+q);
+        System.out.println("Данная модель лодки - базовая, количество мест = ");
 
     }
 }
@@ -103,17 +101,6 @@ class db extends Client {
     }
 }
 
-class Client {
-    int id;
-    int age;
-    String gender;
-
-    public Client(int id, int age, String gender) {
-        this.id = id;
-        this.age = age;
-        this.gender = gender;
-    }
-}
 
 class Repair {
     int numB;

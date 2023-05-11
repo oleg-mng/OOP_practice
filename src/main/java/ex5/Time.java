@@ -1,6 +1,6 @@
 package ex5;
 
-class Time {
+public class Time {
     int hour;
     int s = 100;
 
